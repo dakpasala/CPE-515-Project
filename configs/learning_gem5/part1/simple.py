@@ -91,7 +91,7 @@ system.system_port = system.membus.cpu_side_ports
 # workloads compiled to those ISAs. Other "hello world" binaries for other ISAs
 # can be found in "tests/test-progs/hello".
 thispath = os.path.dirname(os.path.realpath(__file__))
-binary = "/Users/dakshesh/gem5/515tests/APR30/hashset-run/hashset"
+binary = "/Users/dakshesh/gem5/515tests/MAY3/queue-run/queue"
 
 
 system.workload = SEWorkload.init_compatible(binary)
