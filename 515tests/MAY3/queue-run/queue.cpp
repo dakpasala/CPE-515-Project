@@ -45,7 +45,6 @@ int main() {
     long long sum = 0;
     int idx = 0;
 
-    // skip startup junk
     const int trace_offset = 400;
 
     while (!q.empty()) {
