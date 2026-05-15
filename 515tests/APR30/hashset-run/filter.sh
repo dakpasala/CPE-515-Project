@@ -9,7 +9,7 @@ ADDRS="addrs.txt"
 echo "extracting memory"
 grep -i "mem" "$TRACE_FILE" > "$MEM_ONLY"
 
-echo "getting only ss accesses"
+echo "removing ss accesses"
 grep -v "SS:" "$MEM_ONLY" > "$FILTERED"
 
 echo "getting memory addresses"

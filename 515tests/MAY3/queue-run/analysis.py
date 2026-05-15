@@ -3,7 +3,7 @@ from collections import Counter
 
 addresses = []
 
-with open("addrs.txt") as f:
+with open("addrs1.txt") as f:
     for line in f:
         addr = int(line.strip().split("=")[1], 16)
         addresses.append(addr)
