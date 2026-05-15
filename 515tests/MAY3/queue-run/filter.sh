@@ -2,9 +2,9 @@
 
 TRACE_FILE="../../../m5out/trace.txt"
 
-MEM_ONLY="mem_only1.txt"
-FILTERED="filtered1.txt"
-ADDRS="addrs1.txt"
+MEM_ONLY="mem_only2.txt"
+FILTERED="filtered2.txt"
+ADDRS="addrs2.txt"
 
 echo "extracting memory"
 grep -i "mem" "$TRACE_FILE" > "$MEM_ONLY"

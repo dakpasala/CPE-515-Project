@@ -31,9 +31,9 @@ int main() {
     auto trace = load_trace();
 
     if (trace.empty()) {
-        cout << "Baseline run\n";
+        cout << "Baseline run" << endl;
     } else {
-        cout << "Prefetch enabled\n";
+        cout << "Prefetch enabled" << endl;
     }
 
     queue<int> q;
@@ -45,9 +45,12 @@ int main() {
     long long sum = 0;
     int idx = 0;
 
+    // skip startup junk
+    const int trace_offset = 400;
+
     while (!q.empty()) {
-        if (idx + 10 < trace.size()) {
-            __builtin_prefetch((void*)trace[idx + 10]);
+        if (idx + trace_offset + 10 < trace.size()) {
+            __builtin_prefetch((void*)trace[idx + trace_offset + 10]);
         }
 
         sum += q.front();
@@ -56,4 +59,5 @@ int main() {
     }
 
     cout << sum << endl;
+    return 0;
 }
