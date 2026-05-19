@@ -93,7 +93,7 @@ system.system_port = system.membus.cpu_side_ports
 # ---------------------------------------------------------------
 # Workload
 # ---------------------------------------------------------------
-binary = "/Users/dakshesh/gem5/515tests/MAY17/bench-run/bench"
+binary = "/Users/dakshesh/gem5/515tests/MAY18/matrix-tiled/matrix-tiled"
 
 system.workload = SEWorkload.init_compatible(binary)
 
