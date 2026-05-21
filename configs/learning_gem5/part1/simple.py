@@ -93,7 +93,7 @@ system.system_port = system.membus.cpu_side_ports
 # ---------------------------------------------------------------
 # Workload
 # ---------------------------------------------------------------
-binary = "/Users/dakshesh/gem5/515tests/MAY19/bench-vector/bench-vector"
+binary = "/Users/dakshesh/gem5/515tests/MAY20/prefetching/bench-fastlz"
 
 system.workload = SEWorkload.init_compatible(binary)
 
