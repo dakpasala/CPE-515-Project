@@ -6,7 +6,7 @@ extern "C" {
     #include "fastlz.h"
 }
 
-constexpr size_t DATA_SIZE = 1 << 22;  // 4 MB
+constexpr size_t DATA_SIZE = 1 << 23;  
 
 int main() {
     std::vector<unsigned char> input(DATA_SIZE);

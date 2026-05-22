@@ -246,7 +246,7 @@ static int fastlz1_compress(const void* input, int length, void* output) {
       seq = flz_readu32(ip) & 0xffffff;
       hash = flz_hash(seq);
 
-      if (ip + 16 < ip_limit) {
+      if (ip + 8 < ip_limit) {
         uint32_t future_seq = flz_readu32(ip + 8) & 0xffffff;
         uint32_t future_hash = flz_hash(future_seq);
         __builtin_prefetch(ip_start + htab[future_hash], 0, 3);
