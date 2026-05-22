@@ -25,12 +25,12 @@ class L1DCache(Cache):
 
 class L2Cache(Cache):
     assoc = 8
-    tag_latency = 20
-    data_latency = 20
-    response_latency = 20
+    tag_latency = 40
+    data_latency = 40
+    response_latency = 40
     mshrs = 20
     tgts_per_mshr = 12
-    size = '256kB'
+    size = '64kB'
 
 # ---------------------------------------------------------------
 # System setup
