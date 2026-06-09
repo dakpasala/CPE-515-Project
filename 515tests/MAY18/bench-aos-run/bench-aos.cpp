@@ -4,14 +4,13 @@
 
 using namespace std;
 
-// 8 floats = 32 bytes per particle, fits 2 per 64-byte cache line
 struct Particle {
     float x, y, z;       // position
     float vx, vy, vz;    // velocity
     float mass, charge;  // properties
 };
 
-constexpr size_t N = 1 << 16;  // 1M particles = 32 MB total
+constexpr size_t N = 1 << 16;  
 
 int main() {
     cout << "AoS run: " << N << " particles, "
@@ -19,7 +18,6 @@ int main() {
 
     vector<Particle> particles(N);
 
-    // Initialize with deterministic values
     for (size_t i = 0; i < N; i++) {
         particles[i].x = (float)i;
         particles[i].y = (float)i * 2.0f;
@@ -31,8 +29,6 @@ int main() {
         particles[i].charge = -1.0f;
     }
 
-    // Hot loop: only touches x and vx (8 bytes used, 32 bytes loaded per iter)
-    // This is the "partial access" pattern where AoS hurts
     float checksum = 0.0f;
     for (int iter = 0; iter < 10; iter++) {
         for (size_t i = 0; i < N; i++) {
