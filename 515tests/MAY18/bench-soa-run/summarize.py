@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""
-Summarize key gem5 stats from a stats.txt file for locality experiments.
-
-Usage:
-    python3 summarize_stats.py                                 # uses ../../../m5out/stats.txt -> summary.txt
-    python3 summarize_stats.py aos_summary.txt                 # uses ../../../m5out/stats.txt -> aos_summary.txt
-    python3 summarize_stats.py <stats_path> <output_file>      # explicit both
-
-Examples:
-    python3 summarize_stats.py aos_summary.txt
-    python3 summarize_stats.py soa_summary.txt
-    python3 summarize_stats.py m5out/stats.txt my_output.txt
-"""
-
 import sys
 import os
 
