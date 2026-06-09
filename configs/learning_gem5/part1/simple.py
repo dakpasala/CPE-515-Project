@@ -2,9 +2,7 @@ import m5
 from m5.objects import *
 import os
 
-# ---------------------------------------------------------------
 # Cache classes
-# ---------------------------------------------------------------
 class L1ICache(Cache):
     assoc = 2
     tag_latency = 2
@@ -32,9 +30,7 @@ class L2Cache(Cache):
     tgts_per_mshr = 12
     size = '64kB'
 
-# ---------------------------------------------------------------
 # System setup
-# ---------------------------------------------------------------
 system = System()
 
 system.clk_domain = SrcClockDomain()
@@ -50,18 +46,14 @@ system.cpu.LQEntries = 128
 system.cpu.SQEntries = 128
 system.cpu.numROBEntries = 256
 
-# ---------------------------------------------------------------
 # L1 caches: sit directly on the CPU
-# ---------------------------------------------------------------
 system.cpu.icache = L1ICache()
 system.cpu.dcache = L1DCache()
 
 system.cpu.icache.cpu_side = system.cpu.icache_port
 system.cpu.dcache.cpu_side = system.cpu.dcache_port
 
-# ---------------------------------------------------------------
 # L2 bus + L2 cache
-# ---------------------------------------------------------------
 system.l2bus = L2XBar()
 
 system.cpu.icache.mem_side = system.l2bus.cpu_side_ports
@@ -70,9 +62,7 @@ system.cpu.dcache.mem_side = system.l2bus.cpu_side_ports
 system.l2cache = L2Cache()
 system.l2cache.cpu_side = system.l2bus.mem_side_ports
 
-# ---------------------------------------------------------------
 # Memory bus and DRAM
-# ---------------------------------------------------------------
 system.membus = SystemXBar()
 system.l2cache.mem_side = system.membus.cpu_side_ports
 
@@ -90,9 +80,7 @@ system.mem_ctrl.port = system.membus.mem_side_ports
 
 system.system_port = system.membus.cpu_side_ports
 
-# ---------------------------------------------------------------
 # Workload
-# ---------------------------------------------------------------
 binary = "/Users/dakshesh/gem5/515tests/MAY20/prefetching/bench-fastlz"
 
 system.workload = SEWorkload.init_compatible(binary)
@@ -102,9 +90,7 @@ process.cmd = [binary]
 system.cpu.workload = process
 system.cpu.createThreads()
 
-# ---------------------------------------------------------------
 # Run
-# ---------------------------------------------------------------
 root = Root(full_system=False, system=system)
 m5.instantiate()
 
