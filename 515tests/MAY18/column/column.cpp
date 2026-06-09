@@ -9,7 +9,6 @@ constexpr size_t N = 256;  // same matrix size as bench_row
 int main() {
     vector<int> matrix(N * N);
 
-    // Same initialization
     for (size_t i = 0; i < N; i++) {
         for (size_t j = 0; j < N; j++) {
             matrix[i * N + j] = (int)(i + j);
