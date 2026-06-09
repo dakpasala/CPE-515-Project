@@ -4,8 +4,8 @@
 
 using namespace std;
 
-constexpr size_t N = 128;       // same matrix size
-constexpr size_t TILE = 32;     // 32x32 tile = 4 KB per tile, easily fits in L1 (32 KB)
+constexpr size_t N = 128;     
+constexpr size_t TILE = 32;    
 
 int main() {
     cout << "Tiled matmul: " << N << "x" << N << " matrices, "
@@ -13,7 +13,6 @@ int main() {
 
     vector<int> A(N * N), B(N * N), C(N * N, 0);
 
-    // Same initialization as naive
     for (size_t i = 0; i < N; i++) {
         for (size_t j = 0; j < N; j++) {
             A[i * N + j] = (int)((i + j) % 7);
@@ -21,15 +20,10 @@ int main() {
         }
     }
 
-    // Tiled six-nested loop
-    // Outer 3 loops walk through tile coordinates (ii, jj, kk)
-    // Inner 3 loops do a small matmul on the current tiles
-    // The TILE x TILE block of B stays in L1 for all TILE iterations of i within ii
     for (size_t ii = 0; ii < N; ii += TILE) {
         for (size_t jj = 0; jj < N; jj += TILE) {
             for (size_t kk = 0; kk < N; kk += TILE) {
 
-                // Multiply the current tiles, accumulate into C tile
                 for (size_t i = ii; i < ii + TILE; i++) {
                     for (size_t j = jj; j < jj + TILE; j++) {
                         int acc = C[i * N + j];
