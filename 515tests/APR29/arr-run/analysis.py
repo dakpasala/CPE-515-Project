@@ -1,4 +1,3 @@
-import re
 from collections import Counter
 
 addresses = []
@@ -8,7 +7,7 @@ with open("addrs.txt") as f:
         addr = int(line.strip().split("=")[1], 16)
         addresses.append(addr)
 
-strides = [addresses[i+1] - addresses[i] for i in range(len(addresses)-1)]
+strides = [addresses[i + 1] - addresses[i] for i in range(len(addresses) - 1)]
 stride_counts = Counter(strides)
 
 with open("stride_counts.txt", "w") as f:
@@ -30,20 +29,21 @@ with open("reuse.txt", "w") as f:
 
 
 runs = []
-count = 0
+current_run = 0
 
-for i in range(len(strides)):
-    if strides[i] == 8:
-        count += 1
+for stride in strides:
+    # Eight-byte strides are the repeated linear loads from this tiny test.
+    if stride == 8:
+        current_run += 1
     else:
-        if count > 0:
-            runs.append(count)
-        count = 0
+        if current_run > 0:
+            runs.append(current_run)
+        current_run = 0
 
-if count > 0:
-    runs.append(count)
+if current_run > 0:
+    runs.append(current_run)
 
-avg_run = sum(runs)/len(runs) if runs else 0
+avg_run = sum(runs) / len(runs) if runs else 0
 
 with open("runs.txt", "w") as f:
     f.write(f"Total runs: {len(runs)}\n")

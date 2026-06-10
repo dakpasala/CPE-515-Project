@@ -23,7 +23,7 @@ int main() {
     for (size_t ii = 0; ii < N; ii += TILE) {
         for (size_t jj = 0; jj < N; jj += TILE) {
             for (size_t kk = 0; kk < N; kk += TILE) {
-
+                // Work on one small block at a time to get better cache reuse.
                 for (size_t i = ii; i < ii + TILE; i++) {
                     for (size_t j = jj; j < jj + TILE; j++) {
                         int acc = C[i * N + j];

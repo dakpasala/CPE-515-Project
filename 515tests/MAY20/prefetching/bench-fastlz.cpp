@@ -11,21 +11,22 @@ constexpr size_t DATA_SIZE = 1 << 22;
 int main() {
     std::vector<unsigned char> input(DATA_SIZE);
     
-    uint32_t state = 12345;
+    uint32_t lcg_state = 12345;
     for (size_t i = 0; i < DATA_SIZE; i++) {
-        state = state * 1103515245 + 12345;
-        unsigned char byte = (unsigned char)((state >> 16) & 0xFF);
+        lcg_state = lcg_state * 1103515245 + 12345;
+        unsigned char byte = (unsigned char)((lcg_state >> 16) & 0xFF);
         
         byte = 32 + (byte % 95);
         
         input[i] = byte;
     }
     
-    const char* common[] = {
+    const char* common_words[] = {
         " the ", " and ", " of ", " to ", " is ", " in "
     };
     for (size_t i = 0; i < DATA_SIZE - 8; i += 100) {
-        const char* word = common[i % 6];
+        // sprinkle repeated text into the random-looking data.
+        const char* word = common_words[i % 6];
         size_t wlen = 5;  // each common phrase is 5 chars
         for (size_t j = 0; j < wlen && i + j < DATA_SIZE; j++) {
             input[i + j] = (unsigned char)word[j];

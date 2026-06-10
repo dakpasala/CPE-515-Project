@@ -29,10 +29,10 @@ int main() {
     cout << (prefetch_enabled ? "Prefetch enabled" : "Baseline run") << endl;
 
     const int N = 1000;
-    vector<int> arr;
-    arr.reserve(N);
+    vector<int> values;
+    values.reserve(N);
     for (int i = 0; i < N; i++) {
-        arr.push_back(i);
+        values.push_back(i);
     }
 
     long long sum = 0;
@@ -44,7 +44,7 @@ int main() {
             trace_idx++;
         }
 
-        sum += arr[i];
+        sum += values[i];
     }
 
     cout << "sum = " << sum << endl;

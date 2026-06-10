@@ -2,14 +2,15 @@
 using namespace std;
 
 int main() {
-    int arr[1000];
+    int values[1000];
+
     for (int i = 0; i < 1000; i++) {
-        arr[i] = i;
+        values[i] = i;
     }
 
     int sum = 0;
     for (int i = 0; i < 1000; i++) {
-        sum += arr[i];
+        sum += values[i];
     }
 
     cout << sum << endl;

@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// Tunables — adjust based on your gem5 cache config
 constexpr size_t DATA_SIZE = 1 << 22;   // 1M ints = 4 MB (bigger than typical L2)
 constexpr size_t NUM_ACCESSES = 1 << 17; // 256K accesses
 constexpr int PF_DISTANCE = 32;          // prefetch this many iterations ahead
@@ -40,7 +39,7 @@ int main() {
     }
 
     vector<size_t> indices(NUM_ACCESSES);
-    mt19937 rng(42);  
+    mt19937 rng(42);  // fixed seed keeps the run comparable
     uniform_int_distribution<size_t> dist(0, DATA_SIZE - 1);
     for (size_t i = 0; i < NUM_ACCESSES; i++) {
         indices[i] = dist(rng);

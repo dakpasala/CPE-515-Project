@@ -36,10 +36,10 @@ int main() {
         cout << "Prefetch enabled" << endl;
     }
 
-    queue<int> q;
+    queue<int> work_queue;
 
     for (int i = 0; i <= 1000; i++) {
-        q.push(i);
+        work_queue.push(i);
     }
 
     long long sum = 0;
@@ -47,13 +47,14 @@ int main() {
 
     const int trace_offset = 400;
 
-    while (!q.empty()) {
+    while (!work_queue.empty()) {
+        // the trace is ahead of the queue pop stream, so skip forward a bit.
         if (idx + trace_offset + 10 < trace.size()) {
             __builtin_prefetch((void*)trace[idx + trace_offset + 10]);
         }
 
-        sum += q.front();
-        q.pop();
+        sum += work_queue.front();
+        work_queue.pop();
         idx++;
     }
 

@@ -1,18 +1,17 @@
 #include <iostream>
 #include <vector>
-#include <list>
-#include <unordered_map>
-#include <cstdlib>
 using namespace std;
 
 int main() {
-    vector<int> arr;
+    vector<int> values;
+
+    // Dynamic-array version of the simple sequential walk.
     for (int i = 0; i <= 1000; i++)
-        arr.push_back(i);
+        values.push_back(i);
     
     int sum = 0;
-    for (int a : arr)
-        sum += a;
+    for (int value : values)
+        sum += value;
 
     return 0;
 }

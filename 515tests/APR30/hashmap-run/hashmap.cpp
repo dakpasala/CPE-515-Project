@@ -1,18 +1,16 @@
 #include <iostream>
-#include <vector>
-#include <list>
 #include <unordered_map>
-#include <cstdlib>
 using namespace std;
 
 int main() {
-    unordered_map<int, int> map;
+    unordered_map<int, int> lookup;
+
     for (int i = 0; i <= 1000; i++)
-        map[i] = i;
+        lookup[i] = i;
     
-    int max = 0;
-    for (const auto &pair : map)
-        max = std::max(max, pair.first);
+    int max_key = 0;
+    for (const auto &entry : lookup)
+        max_key = std::max(max_key, entry.first);
     
     return 0;
 }

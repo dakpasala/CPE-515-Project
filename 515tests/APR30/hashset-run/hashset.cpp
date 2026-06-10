@@ -1,17 +1,15 @@
 #include <iostream>
-#include <vector>
-#include <list>
 #include <unordered_set>
-#include <cstdlib>
 using namespace std;
 
 int main() {
-    unordered_set<int> set;
+    unordered_set<int> keys;
+
     for (int i = 0; i <= 1000; i++)
-        set.insert(i);
+        keys.insert(i);
     
-    int max = 0;
-    for (int s : set) max = std::max(max, s);
+    int max_key = 0;
+    for (int key : keys) max_key = std::max(max_key, key);
     
     return 0;
 }

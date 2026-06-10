@@ -16,7 +16,8 @@ struct Particles {
 constexpr size_t N = 1 << 16;  
 
 int main() {
-    cout << "SoA run: " << N << " particles, " << (N * 8 * sizeof(float)) / (1024 * 1024) << " MB total" << endl;
+    cout << "SoA run: " << N << " particles, "
+         << (N * 8 * sizeof(float)) / (1024 * 1024) << " MB total" << endl;
 
     Particles particles(N);
 
@@ -33,7 +34,7 @@ int main() {
 
     float checksum = 0.0f;
     for (int iter = 0; iter < 10; iter++) {
-        for (size_t i = 0; i < N; i++) 
+        for (size_t i = 0; i < N; i++)
             particles.x[i] += particles.vx[i];
         checksum += particles.x[N / 2];
     }

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr size_t N = 256;  // same matrix size as bench_row
+constexpr size_t N = 256;  
 
 int main() {
     vector<int> matrix(N * N);
@@ -17,6 +17,7 @@ int main() {
     
     long long sum = 0;
     for (int iter = 0; iter < 5; iter++) {
+        // column-first walk: unfriendly
         for (size_t j = 0; j < N; j++) {
             for (size_t i = 0; i < N; i++) {
                 sum += matrix[i * N + j];
